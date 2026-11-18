@@ -1,7 +1,6 @@
 package sistema;
 
 import java.sql.Connection;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
@@ -20,14 +19,38 @@ public class Main {
             System.out.println("3. Sair do sistema");
 
             i = sc.nextInt();
+            sc.nextLine();
             switch (i){
-                case 1:
+                case 1: {
                     System.out.println("Insira o nome do hotel:");
                     String nome_hotel = sc.nextLine();
 
                     System.out.println("Insira o CNPJ do hotel:");
+                    String CNPJ = sc.nextLine();
 
-                       }
+                    System.out.println("Insira o telefone do hotel");
+                    String tell_hotel = sc.nextLine();
+
+                    System.out.println("Insira o endereço do hotel");
+                    String endereco_hotel = sc.nextLine();
+
+                    bd.cadastrarHotel(con, nome_hotel, CNPJ, tell_hotel, endereco_hotel);
+                    break;
+                }
+                case 2: {
+                    System.out.println("Digite o nome do hotel:");
+                    String nome_hotel = sc.nextLine();
+
+                    if (bd.consultarHotel(con, nome_hotel)) {
+                        System.out.println("Hotel encontrado!");
+
+                    } else {
+                        System.out.println("Hotel não encontrado!");
+                    }
+
+                    break;
+                }
+            }
         }
     }
 }
